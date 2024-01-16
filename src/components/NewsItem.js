@@ -1,16 +1,19 @@
 import React from 'react'
 
 
-export default function NewsItem({title,description,imageUrl,newsUrl}) {
+export default function NewsItem({title,description,imageUrl,newsUrl,author,date,source}) {
    
   return (
     <div className='my-3'>
-        <div className="card" style={{width :"18rem"}}>
-            <img src={!imageUrl?"https://static.toiimg.com/thumb/msid-106721995,width-1070,height-580,imgsize-9428,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg": imageUrl} className="card-img-top" alt="..."/>
+        <div className="card">
+          {/* <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{left:'91%',zIndex:'1'}}>
+                {source}</span> */}
+            <img src={imageUrl? imageUrl:"https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"} className="card-img-top" alt="..."/>
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{description}</p>
-                <a href={newsUrl} target='_blank' className="btn btn-sm btn-primary">Read More</a>
+                <p className="card-text"><small className="text-muted"> By {author?author:"Unknown"} on {new Date(date).toGMTString()}</small></p>
+                <a href={newsUrl} rel="noreferrer" target='_blank' className="btn btn-sm btn-primary">Read More</a>
             </div>
         </div>
     </div>
