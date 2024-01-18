@@ -18,11 +18,16 @@ export default function News({ category }) {
         setArticles(parsedData.articles);
         setTotalDocs(parsedData.totalResults);
         setLoading(false);
+        
     };
 
     useEffect(() => {
+        document.title = `News-${
+            category[0].toUpperCase() + category.substring(1)
+        }`;
         updateNews();
-    }, [category]);
+        
+    },[category]);
 
     const handlePrevClick = async () => {
         setPage(page - 1);
@@ -35,8 +40,8 @@ export default function News({ category }) {
     };
 
     return (
-        <div className="container my-3 mt-5">
-            <h1 className="text-center">
+        <div className="container my-3" >
+            <h1 className="text-center"style={{marginTop: '80px'}}>
                 {category[0].toUpperCase() + category.substring(1)}-Top
                 Headlines
             </h1>
@@ -44,21 +49,24 @@ export default function News({ category }) {
                 <Spinner />
             ) : (
                 <div className="row">
-                    {articles && articles.map((element) => {
+                    {articles &&
+                        articles.map((element) => {
                             return (
                                 <div className="col-md-4" key={element.url}>
                                     <NewsItem
                                         title={
-                                            element.title ? element.title : ""
+                                            element.title ? element.title.slice(0, 50) : ""
                                         }
                                         description={
-                                            element.description? element.description: ""
+                                            element.description
+                                                ? element.description.slice(0, 90)
+                                                : ""
                                         }
                                         imageUrl={element.urlToImage}
                                         newsUrl={element.url}
                                         author={element.author}
                                         date={element.publishedAt}
-                                        // source={element.source.name}
+                                        source={element.source.name}
                                     />
                                 </div>
                             );

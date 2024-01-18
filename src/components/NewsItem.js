@@ -6,13 +6,17 @@ export default function NewsItem({title,description,imageUrl,newsUrl,author,date
   return (
     <div className='my-3'>
         <div className="card">
-          {/* <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{left:'91%',zIndex:'1'}}>
-                {source}</span> */}
-            <img src={imageUrl? imageUrl:"https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"} className="card-img-top" alt="..."/>
+          <div style={{display:'flex',
+                       justifyContent:'flex-end',
+                       position:'absolute',
+                       right:'0'}}>
+              <span className=" badge rounded-pill bg-danger">{source}</span>
+          </div>
+            <img style={{height:'250px'}} src={imageUrl? imageUrl:"https://www.livemint.com/lm-img/img/2024/01/17/1600x900/2-0-153902044-Bombay-Stock-Exchange--5C-0_1681142958887_1705454801551.jpg"} className="card-img-top" alt="..."/>
             <div className="card-body">
-                <h5 className="card-title">{title}</h5>
-                <p className="card-text">{description}</p>
-                <p className="card-text"><small className="text-muted"> By {author?author:"Unknown"} on {new Date(date).toGMTString()}</small></p>
+                <h5 className="card-title">{title}...</h5>
+                <p className="card-text">{description}...</p>
+                <p className="card-text"><small className="text-muted"> By {author?author.slice(0,10):"Unknown"}... on {new Date(date).toGMTString()}</small></p>
                 <a href={newsUrl} rel="noreferrer" target='_blank' className="btn btn-sm btn-primary">Read More</a>
             </div>
         </div>
