@@ -10,13 +10,14 @@ export default function News({ category }) {
     const [totalDocs, setTotalDocs] = useState(0);
 
     const updateNews = async () => {
-        const url = `https://newsapi.org/v2/top-headlines?country=in&category=${category}&apiKey=e2f1980635224c4388267703f96e6377&page=${page}&pageSize=${pagesize}`;
+        // const url = `https://newsapi.org/v2/top-headlines?country=in&category=${category}&apiKey=92334a7ce6f669a86780c8f4d4c29ec4&page=${page}&pageSize=${pagesize}`;
+        const url =`https://gnews.io/api/v4/top-headlines?category=${category}&apikey=92334a7ce6f669a86780c8f4d4c29ec4&page=${page}&max=${pagesize}&lang=en`;
         setLoading(true);
         let data = await fetch(url);
         let parsedData = await data.json();
         console.log(parsedData);
         setArticles(parsedData.articles);
-        setTotalDocs(parsedData.totalResults);
+        setTotalDocs(parsedData.totalArticles);
         setLoading(false);
     };
 
@@ -42,7 +43,7 @@ export default function News({ category }) {
                                     <NewsItem
                                         title={element.title? element.title.slice(0, 50): ""}
                                         description={element.description? element.description.slice(0,90): ""}
-                                        imageUrl={element.urlToImage}
+                                        imageUrl={element.image}
                                         newsUrl={element.url}
                                         author={element.author}
                                         date={element.publishedAt}
@@ -88,7 +89,7 @@ export default function News({ category }) {
                         setPage(page + 1);
                     }}
                 >
-                    Next &rarr;
+                    Next, this work after paid subscription only but works completely fine &rarr;
                 </button>
             </div>
         </div>
