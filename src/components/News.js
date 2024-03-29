@@ -89,9 +89,11 @@ export default function News({ category }) {
                         setPage(page + 1);
                     }}
                 >
-                    Next, this work after paid subscription only but works completely fine &rarr;
+                    Next&rarr;
                 </button>
+               
             </div>
+                <div className=" text-center  mt-3 "> Please ignore Next and Previous buttons as I am using free API which does not support pagination. Pagination only works on Paid API's.</div>
         </div>
     );
 }
